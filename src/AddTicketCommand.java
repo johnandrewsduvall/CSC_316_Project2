@@ -1,9 +1,13 @@
 public class AddTicketCommand extends Command<AddTicketCommandResult> {
-    public int priority;
+    private int priority;
+    
+    public AddTicketCommand(int priority) {
+        this.priority = priority;
+    }
 
     public AddTicketCommandResult execute(TicketSystem ticketSystem) {
-        AddTicketCommandResult result = new AddTicketCommandResult();
-        result.id = ticketSystem.addTicket(this.priority);
+        Ticket ticket = ticketSystem.addTicket(this.priority);
+        AddTicketCommandResult result = new AddTicketCommandResult(ticket.id);
         result.success = true;
         return result;
     }

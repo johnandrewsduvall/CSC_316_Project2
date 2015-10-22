@@ -1,5 +1,9 @@
 public class AddTicketCommandResult extends CommandResult {
-    public int id;
+    private int id;
+    
+    public AddTicketCommandResult(int id) {
+        this.id = id;
+    }
 
     public String print() {
         return "id = " + id;

@@ -19,8 +19,7 @@ public class CommandParser {
     }
 
     private AddTicketCommand createAddTicketCommand(String line) {
-        AddTicketCommand cmd = new AddTicketCommand();
-        cmd.priority = new Scanner(line.substring(1)).nextInt();
-        return cmd;
+        int priority = new Scanner(line.substring(1)).nextInt();
+        return new AddTicketCommand(priority);
     }
 }
