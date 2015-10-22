@@ -8,13 +8,14 @@ public class HelpTickets {
 
         while (scanner.hasNextLine()) {
             String inputLine = scanner.nextLine();
+            System.out.println(inputLine);
             Command command = cmdParser.parseLine(inputLine);
             if (command == null) {
-                printError("invalid command " + inputLine);
+                System.out.println(printError("invalid command " + inputLine));
             } else {
                 CommandResult commandResult = command.execute(ticketSystem);
                 if (!commandResult.success) {
-                    printError(commandResult.errorMessage);
+                    System.out.println(printError(commandResult.errorMessage));
                 } else {
                     System.out.println(commandResult.print());
                 }
