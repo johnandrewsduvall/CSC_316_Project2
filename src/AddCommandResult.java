@@ -1,7 +1,7 @@
-public class AddTicketCommandResult extends CommandResult {
+public class AddCommandResult extends CommandResult {
     private int id;
-    
-    public AddTicketCommandResult(int id) {
+
+    public AddCommandResult(int id) {
         this.id = id;
     }
 

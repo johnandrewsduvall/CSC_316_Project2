@@ -8,7 +8,13 @@ public class CommandParser {
                 char action = line.charAt(0);
                 switch (action) {
                     case '+':
-                        return createAddTicketCommand(line);
+                        return parseAddCommand(line);
+                    case '-':
+                        return parseRemoveCommand(line);
+                    case '*':
+                        return parseRemoveHighestCommand();
+                    case '?':
+                        return parseQueryCommand(line);
                     default:
                         // Do nothing
                 }
@@ -18,8 +24,23 @@ public class CommandParser {
         return null;
     }
 
-    private AddTicketCommand createAddTicketCommand(String line) {
+    private AddCommand parseAddCommand(String line) {
         int priority = new Scanner(line.substring(1)).nextInt();
-        return new AddTicketCommand(priority);
+        return new AddCommand(priority);
+    }
+
+    private RemoveCommand parseRemoveCommand(String line) {
+        // TODO: Write this
+        return null;
+    }
+
+    private RemoveHighestCommand parseRemoveHighestCommand() {
+        // TODO: Write this
+        return null;
+    }
+
+    private QueryCommand parseQueryCommand(String line) {
+        // TODO: Write this
+        return null;
     }
 }
