@@ -17,13 +17,14 @@ public class TicketSystem {
 
     public Ticket removeTicket(int id) {
         int priority = _idPriorityMap.get(id);
+        int position = getTicketQueuePosition(id, priority);
         ArrayList<Integer> priorityList = _priorityMap.get(priority);
-        priorityList.remove(id);
+        priorityList.remove((Integer)id);
         if (priorityList.size() == 0) {
             _priorityMap.remove(priority);
         }
         _idPriorityMap.remove(id);
-        return new Ticket(id, priority);
+        return new Ticket(id, priority, position);
     }
 
     public Ticket addTicket(int priority) {
@@ -37,18 +38,20 @@ public class TicketSystem {
     }
 
     public int getTicketQueuePosition(int id) {
+        return getTicketQueuePosition(id, _idPriorityMap.get(id));
+    }
+
+    private int getTicketQueuePosition(int id, int thisPriority) {
         int position = 0;
-        int thisPriority = _idPriorityMap.get(id);
         for (int priority : _priorityMap.descendingKeySet()) {
             ArrayList<Integer> priorityIDs = _priorityMap.get(priority);
-            if (priority < thisPriority) {
+            if (priority > thisPriority) {
                 position += priorityIDs.size();
             } else if (priority == thisPriority) {
-                position += priorityIDs.indexOf(id);
+                position += priorityIDs.indexOf(id) + 1;
                 break;
             }
         }
-
         return position;
     }
 }
