@@ -11,50 +11,59 @@ public class TicketSystemTester {
         TicketSystem ticketSystem = new TicketSystem();
 
         // Add a ticket
-        log("Adding a ticket with priority 10");
+        log("TEST: Adding a ticket with priority 10");
         Ticket ticket = ticketSystem.addTicket(10);
         testEquals(1, ticket.id);
         testEquals(10, ticket.priority);
 
         // Add another
-        log("Adding a ticket with priority 100");
+        log("TEST: Adding a ticket with priority 100");
         ticket = ticketSystem.addTicket(100);
         testEquals(2, ticket.id);
         testEquals(100, ticket.priority);
 
         // And another
-        log("Adding a ticket with priority 50");
+        log("TEST: Adding a ticket with priority 50");
         ticket = ticketSystem.addTicket(50);
+        log("   Validating ticket ID");
         testEquals(3, ticket.id);
+        log("   Validating ticket priority");
         testEquals(50, ticket.priority);
 
-        log("Querying the position of ticket ID 1");
-        testEquals(3, ticketSystem.getTicketQueuePosition(1));
+        log("TEST: Querying the position of ticket ID 1");
+        testEquals(3, ticketSystem.getPositionByID(1));
 
-        log("Removing the ticket with ID 2");
-        ticket = ticketSystem.removeTicket(2);
-        testEquals(100, ticket.priority);
+        log("TEST: Removing the ticket with ID 2");
+        ticket = ticketSystem.removeTicketByID(2, true);
+        log("   Validating ticket ID");
         testEquals(2, ticket.id);
+        log("   Validating ticket priority");
+        testEquals(100, ticket.priority);
+        log("   Validating ticket position");
         testEquals(1, ticket.position);
 
-        log("Querying the position of ticket ID 1 again");
-        testEquals(2, ticketSystem.getTicketQueuePosition(1));
+        log("TEST: Querying the position of ticket ID 1 again");
+        testEquals(2, ticketSystem.getPositionByID(1));
 
-        log("Querying the position of ticket ID 3");
-        testEquals(1, ticketSystem.getTicketQueuePosition(3));
+        log("TEST: Querying the position of ticket ID 3");
+        testEquals(1, ticketSystem.getPositionByID(3));
 
-        log("Removing the highest priority ticket");
-        ticket = ticketSystem.removeHighestPriorityTicket();
-        testEquals(50, ticket.priority);
+        log("TEST: Removing the highest priority ticket");
+        ticket = ticketSystem.removeHighestPriorityTicket(false);
+        log("   Validating ticket ID");
         testEquals(3, ticket.id);
+        log("   Validating ticket priority");
+        testEquals(50, ticket.priority);
 
-        log("Querying the position of ticket ID 1 yet again");
-        testEquals(1, ticketSystem.getTicketQueuePosition(1));
+        log("TEST: Querying the position of ticket ID 1 yet again");
+        testEquals(1, ticketSystem.getPositionByID(1));
 
-        log("Removing the highest priority ticket");
-        ticket = ticketSystem.removeHighestPriorityTicket();
-        testEquals(10, ticket.priority);
+        log("TEST: Removing the highest priority ticket");
+        ticket = ticketSystem.removeHighestPriorityTicket(false);
+        log("   Validating ticket ID");
         testEquals(1, ticket.id);
+        log("   Validating ticket priority");
+        testEquals(10, ticket.priority);
 
         log("All tests passed");
     }
