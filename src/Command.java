@@ -1,3 +1,3 @@
 public abstract class Command<E extends CommandResult> {
-    public abstract E execute(TicketSystem ticketSystem);
+    public abstract E run(TicketSystem ticketSystem) throws Exception;
 }

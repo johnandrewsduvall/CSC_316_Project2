@@ -1,5 +1,5 @@
 public class QueryCommand extends Command<QueryCommandResult> {
-    public QueryCommandResult execute(TicketSystem ticketSystem) {
+    public QueryCommandResult run(TicketSystem ticketSystem) {
         // TODO: Write this
         return null;
     }

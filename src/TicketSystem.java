@@ -15,7 +15,7 @@ public class TicketSystem {
     _idToPriority = new TreeMap<Integer, Integer>();
   }
 
-  public Ticket add(int priority) throws DuplicatePriorityException {
+  public Ticket add(int priority) throws Exception {
     ensurePriorityIsNew(priority);
     int newTicketID = getNextTicketID();
     _priorityToID.put(priority, newTicketID);
@@ -23,35 +23,31 @@ public class TicketSystem {
     return new Ticket(newTicketID, priority);
   }
 
-  public Ticket removeHighest(boolean getPos) throws EmptyQueueException {
+  public Ticket removeHighest(boolean getPos) throws Exception {
     ensureQueueIsNotEmpty();
     int highestPriority = _priorityToID.lastKey();
     return remove(_priorityToID.get(highestPriority), highestPriority, getPos);
   }
 
-  public Ticket removePriority(int priority, boolean getPos)
-                         throws EmptyQueueException, PriorityNotFoundException {
+  public Ticket removePriority(int priority, boolean getPos) throws Exception {
     ensureQueueIsNotEmpty();
     ensurePriorityExists(priority);
     return remove(_priorityToID.get(priority), priority, getPos);
   }
 
-  public Ticket removeID(int ticketID, boolean getPos)
-                           throws EmptyQueueException, TicketNotFoundException {
+  public Ticket removeID(int ticketID, boolean getPos) throws Exception {
     ensureQueueIsNotEmpty();
     ensureIdExists(ticketID);
     return remove(ticketID, _idToPriority.get(ticketID), getPos);
   }
 
-  public int getPositionByID(int ticketID)
-                           throws EmptyQueueException, TicketNotFoundException {
+  public int getPositionByID(int ticketID) throws Exception {
     ensureQueueIsNotEmpty();
     ensureIdExists(ticketID);
     return getPosition(_idToPriority.get(ticketID));
   }
 
-  public int getPositionByPriority(int ticketPriority)
-                         throws EmptyQueueException, PriorityNotFoundException {
+  public int getPositionByPriority(int ticketPriority) throws Exception {
     ensureQueueIsNotEmpty();
     ensurePriorityExists(ticketPriority);
     return getPosition(ticketPriority);
@@ -64,27 +60,30 @@ public class TicketSystem {
     return ++_maxTicketID;
   }
 
-  private void ensureQueueIsNotEmpty() throws EmptyQueueException {
+  private void ensureQueueIsNotEmpty() throws Exception {
     if (_priorityToID.isEmpty()) {
-      throw new EmptyQueueException();
+      throw new Exception("removal attempted when queue is empty");
     }
   }
 
-  private void ensureIdExists(int id) throws TicketNotFoundException {
+  private void ensureIdExists(int id) throws Exception {
     if (!_idToPriority.containsKey(id)) {
-      throw new TicketNotFoundException(id);
+      throw new Exception("there is no ticket with id = "
+        + id + " in the queue");
     }
   }
 
-  private void ensurePriorityExists(int p) throws PriorityNotFoundException {
+  private void ensurePriorityExists(int p) throws Exception {
     if (!_priorityToID.containsKey(p)) {
-      throw new PriorityNotFoundException(p);
+      throw new Exception("there is no ticket with priority = "
+        + p + " in the queue");
     }
   }
 
-  private void ensurePriorityIsNew(int p) throws DuplicatePriorityException {
+  private void ensurePriorityIsNew(int p) throws Exception {
     if (_idToPriority.containsKey(p)) {
-      throw new DuplicatePriorityException(p);
+      throw new Exception("a ticket with priority "
+        + p + " is already in the queue");
     }
   }
 
