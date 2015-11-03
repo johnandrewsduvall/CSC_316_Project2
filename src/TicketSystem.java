@@ -1,75 +1,114 @@
 import java.util.*;
 
 public class TicketSystem {
-    private TreeMap<Integer, Integer> _priorityMap;
-    private TreeMap<Integer, Integer> _ticketMap;
-    private int _maxTicketID;
+  // Map of priority -> ticket ID
+  private TreeMap<Integer, Integer> _priorityToID;
 
-    public TicketSystem() {
-        _priorityMap = new TreeMap<Integer, Integer>();
-        _ticketMap = new TreeMap<Integer, Integer>();
+  // Map of ticket ID -> priority
+  private TreeMap<Integer, Integer> _idToPriority;
+
+  // The highest ticket ID in the system
+  private int _maxTicketID;
+
+  public TicketSystem() {
+    _priorityToID = new TreeMap<Integer, Integer>();
+    _idToPriority = new TreeMap<Integer, Integer>();
+  }
+
+  public Ticket add(int priority) throws DuplicatePriorityException {
+    ensurePriorityIsNew(priority);
+    int newTicketID = getNextTicketID();
+    _priorityToID.put(priority, newTicketID);
+    _idToPriority.put(newTicketID, priority);
+    return new Ticket(newTicketID, priority);
+  }
+
+  public Ticket removeHighest(boolean getPos) throws EmptyQueueException {
+    ensureQueueIsNotEmpty();
+    int highestPriority = _priorityToID.lastKey();
+    return remove(_priorityToID.get(highestPriority), highestPriority, getPos);
+  }
+
+  public Ticket removePriority(int priority, boolean getPos)
+                         throws EmptyQueueException, PriorityNotFoundException {
+    ensureQueueIsNotEmpty();
+    ensurePriorityExists(priority);
+    return remove(_priorityToID.get(priority), priority, getPos);
+  }
+
+  public Ticket removeID(int ticketID, boolean getPos)
+                           throws EmptyQueueException, TicketNotFoundException {
+    ensureQueueIsNotEmpty();
+    ensureIdExists(ticketID);
+    return remove(ticketID, _idToPriority.get(ticketID), getPos);
+  }
+
+  public int getPositionByID(int ticketID)
+                           throws EmptyQueueException, TicketNotFoundException {
+    ensureQueueIsNotEmpty();
+    ensureIdExists(ticketID);
+    return getPosition(_idToPriority.get(ticketID));
+  }
+
+  public int getPositionByPriority(int ticketPriority)
+                         throws EmptyQueueException, PriorityNotFoundException {
+    ensureQueueIsNotEmpty();
+    ensurePriorityExists(ticketPriority);
+    return getPosition(ticketPriority);
+  }
+
+  /*
+   * PRIVATE METHODS
+   */
+  private int getNextTicketID() {
+    return ++_maxTicketID;
+  }
+
+  private void ensureQueueIsNotEmpty() throws EmptyQueueException {
+    if (_priorityToID.isEmpty()) {
+      throw new EmptyQueueException();
     }
+  }
 
-    // ADD method
-    public Ticket addTicket(int priority) {
-        int newTicketID = getNextTicketID();
-        _priorityMap.put(priority, newTicketID);
-        _ticketMap.put(newTicketID, priority);
-        return new Ticket(newTicketID, priority);
+  private void ensureIdExists(int id) throws TicketNotFoundException {
+    if (!_idToPriority.containsKey(id)) {
+      throw new TicketNotFoundException(id);
     }
+  }
 
-    // REMOVE methods
-    public Ticket removeHighestPriorityTicket(boolean getPos) {
-        return removeTicketByPriority(_priorityMap.lastKey(), getPos);
+  private void ensurePriorityExists(int p) throws PriorityNotFoundException {
+    if (!_priorityToID.containsKey(p)) {
+      throw new PriorityNotFoundException(p);
     }
+  }
 
-    public Ticket removeTicketByPriority(int priority, boolean getPos) {
-        int ticketID = _priorityMap.get(priority);
-        return removeTicket(ticketID, priority, getPos);
+  private void ensurePriorityIsNew(int p) throws DuplicatePriorityException {
+    if (_idToPriority.containsKey(p)) {
+      throw new DuplicatePriorityException(p);
     }
+  }
 
-    public Ticket removeTicketByID(int ticketID, boolean getPos) {
-        int priority = _ticketMap.get(ticketID);
-        return removeTicket(ticketID, priority, getPos);
+  private Ticket remove(int ticketID, int priority, boolean getPos) {
+    Ticket ticket = null;
+    if (getPos) {
+      int position = getPosition(priority);
+      ticket = new Ticket(ticketID, priority, position);
+    } else {
+      ticket = new Ticket(ticketID, priority);
     }
+    _priorityToID.remove(priority);
+    _idToPriority.remove(ticketID);
+    return ticket;
+  }
 
-    // QUERY methods
-    public int getPositionByID(int ticketID) {
-        int priority = _ticketMap.get(ticketID);
-        return getPositionByPriority(priority);
+  private int getPosition(int priority) {
+    int position = 0;
+    for (int p : _priorityToID.descendingKeySet()) {
+      position++;
+      if (p == priority) {
+        break;
+      }
     }
-
-    public int getPositionByPriority(int ticketPriority) {
-        int position = 0;
-        for (int priority : _priorityMap.descendingKeySet()) {
-            position++;
-            if (priority == ticketPriority) {
-                break;
-            }
-        }
-        return position;
-    }
-
-    // PRIVATE methods
-    private int getNextTicketID() {
-        return ++_maxTicketID;
-    }
-
-    private Ticket removeTicket(int ticketID, int priority, boolean getPos) {
-        // Get the ticket
-        Ticket ticket = null;
-        if (getPos) {
-            int position = getPositionByPriority(priority);
-            ticket = new Ticket(ticketID, priority, position);
-        } else {
-            ticket = new Ticket(ticketID, priority);
-        }
-
-        // Remove the ticket
-        _priorityMap.remove(priority);
-        _ticketMap.remove(ticketID);
-
-        // Return the ticket
-        return ticket;
-    }
+    return position;
+  }
 }

@@ -12,19 +12,19 @@ public class TicketSystemTester {
 
         // Add a ticket
         log("TEST: Adding a ticket with priority 10");
-        Ticket ticket = ticketSystem.addTicket(10);
+        Ticket ticket = ticketSystem.add(10);
         testEquals(1, ticket.id);
         testEquals(10, ticket.priority);
 
         // Add another
         log("TEST: Adding a ticket with priority 100");
-        ticket = ticketSystem.addTicket(100);
+        ticket = ticketSystem.add(100);
         testEquals(2, ticket.id);
         testEquals(100, ticket.priority);
 
         // And another
         log("TEST: Adding a ticket with priority 50");
-        ticket = ticketSystem.addTicket(50);
+        ticket = ticketSystem.add(50);
         log("   Validating ticket ID");
         testEquals(3, ticket.id);
         log("   Validating ticket priority");
@@ -34,7 +34,7 @@ public class TicketSystemTester {
         testEquals(3, ticketSystem.getPositionByID(1));
 
         log("TEST: Removing the ticket with ID 2");
-        ticket = ticketSystem.removeTicketByID(2, true);
+        ticket = ticketSystem.removeID(2, true);
         log("   Validating ticket ID");
         testEquals(2, ticket.id);
         log("   Validating ticket priority");
@@ -49,7 +49,7 @@ public class TicketSystemTester {
         testEquals(1, ticketSystem.getPositionByID(3));
 
         log("TEST: Removing the highest priority ticket");
-        ticket = ticketSystem.removeHighestPriorityTicket(false);
+        ticket = ticketSystem.removeHighest(false);
         log("   Validating ticket ID");
         testEquals(3, ticket.id);
         log("   Validating ticket priority");
@@ -59,7 +59,7 @@ public class TicketSystemTester {
         testEquals(1, ticketSystem.getPositionByID(1));
 
         log("TEST: Removing the highest priority ticket");
-        ticket = ticketSystem.removeHighestPriorityTicket(false);
+        ticket = ticketSystem.removeHighest(false);
         log("   Validating ticket ID");
         testEquals(1, ticket.id);
         log("   Validating ticket priority");

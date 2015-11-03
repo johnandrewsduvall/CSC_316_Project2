@@ -6,9 +6,14 @@ public class AddCommand extends Command<AddCommandResult> {
     }
 
     public AddCommandResult execute(TicketSystem ticketSystem) {
-        Ticket ticket = ticketSystem.addTicket(this.priority);
-        AddCommandResult result = new AddCommandResult(ticket.id);
-        result.success = true;
+        AddCommandResult result = new AddCommandResult();
+        try {
+            Ticket ticket = ticketSystem.add(this.priority);
+            result.id = ticket.id;
+            result.success = true;
+        } catch (Exception e) {
+            result.errorMessage = e.getMessage();
+        }
         return result;
     }
 }
