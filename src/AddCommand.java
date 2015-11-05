@@ -5,10 +5,7 @@ public class AddCommand extends Command<AddCommandResult> {
         this.priority = priority;
     }
 
-    public AddCommandResult execute(TicketSystem ticketSystem) {
-        Ticket ticket = ticketSystem.addTicket(this.priority);
-        AddCommandResult result = new AddCommandResult(ticket.id);
-        result.success = true;
-        return result;
+    public AddCommandResult run(TicketSystem ticketSystem) throws Exception {
+        return new AddCommandResult(ticketSystem.add(this.priority).id);
     }
 }
