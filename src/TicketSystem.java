@@ -101,13 +101,7 @@ public class TicketSystem {
   }
 
   private int getPosition(int priority) {
-    int position = 0;
-    for (int p : _priorityToID.descendingKeySet()) {
-      position++;
-      if (p == priority) {
-        break;
-      }
-    }
-    return position;
+    SortedMap<Integer, Integer> tailMap = _priorityToID.tailMap(priority);
+    return tailMap.size();
   }
 }
