@@ -6,6 +6,8 @@ public class QueryCommand extends Command<QueryCommandResult> {
     public QueryCommand (int id){
         this.id = id;
     }
+    
+    @Override
     public QueryCommandResult run(TicketSystem ticketSystem) throws Exception{
         return new QueryCommandResult(ticketSystem.getPositionByID(this.id));
     }

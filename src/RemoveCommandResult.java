@@ -8,6 +8,7 @@ public class RemoveCommandResult extends CommandResult {
         this.priority = priority;
         this.position = position;
     }
+    @Override
     public String print() {
         return "\t" + this.priority + ", pos = " + position;
     }

@@ -8,6 +8,8 @@ public class RemoveHighestCommandResult extends CommandResult {
         this.id = id;
         this.priority = priority;
     }
+    @Override
+    //Formats Ticket data into human readable string
     public String print() {
         return "\tid = " + this.id + ", " + this.priority;
     }

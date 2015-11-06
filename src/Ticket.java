@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author Matthew Watkins
+ * Ticket structure
+ */
+
 public class Ticket {
     public int id;
     public int priority;

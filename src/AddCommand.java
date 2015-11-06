@@ -5,6 +5,7 @@ public class AddCommand extends Command<AddCommandResult> {
         this.priority = priority;
     }
 
+    @Override
     public AddCommandResult run(TicketSystem ticketSystem) throws Exception {
         return new AddCommandResult(ticketSystem.add(this.priority).id);
     }
