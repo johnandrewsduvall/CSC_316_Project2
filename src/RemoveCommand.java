@@ -1,6 +1,13 @@
+/**
+ * @author Shujun Ye
+ */
 public class RemoveCommand extends Command<RemoveCommandResult> {
-    public RemoveCommandResult run(TicketSystem ticketSystem) {
-        // TODO: Write this
-        return null;
+    private int ticketId;
+    public RemoveCommand(int ticketId){
+        this.ticketId = ticketId;
+    }
+    public RemoveCommandResult run(TicketSystem ticketSystem) throws Exception{
+        Ticket result = ticketSystem.removeID(ticketId, true);
+        return new RemoveCommandResult(result.priority, result.position);
     }
 }

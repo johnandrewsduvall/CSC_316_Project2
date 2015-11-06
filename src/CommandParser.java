@@ -1,5 +1,8 @@
 import java.util.*;
-
+/**
+ * @author Matthew Watkins
+ * @author Shujun Ye
+ */
 public class CommandParser {
     public Command parseLine(String line) throws Exception {
         if (line != null && line.length() > 0) {
@@ -28,22 +31,19 @@ public class CommandParser {
     private AddCommand parseAddCommand(String line) {
         int priority = new Scanner(line.substring(1)).nextInt();
         return new AddCommand(priority);
-        // TODO: Detect non-parsable ID and
-        // throw new Exception("id id is not an integer");
     }
 
     private RemoveCommand parseRemoveCommand(String line) {
-        // TODO: Write this
-        return null;
+        int id = new Scanner(line.substring(1)).nextInt();
+        return new RemoveCommand(id);
     }
 
     private RemoveHighestCommand parseRemoveHighestCommand() {
-        // TODO: Write this
-        return null;
+        return new RemoveHighestCommand();
     }
 
     private QueryCommand parseQueryCommand(String line) {
-        // TODO: Write this
-        return null;
+        int id = new Scanner(line.substring(1)).nextInt();
+        return new QueryCommand(id);
     }
 }

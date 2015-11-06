@@ -6,3 +6,4 @@ java TicketSystemTester
 echo 'Cleaning up';
 rm -f *.class;
 echo 'Done';
+read -n 1 -s;
