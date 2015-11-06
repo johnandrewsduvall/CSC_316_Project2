@@ -9,6 +9,6 @@ public class RemoveHighestCommandResult extends CommandResult {
         this.priority = priority;
     }
     public String print() {
-        return "\tid = " + this.id + ", " + this.priority;
+        return "id = " + this.id + ", " + this.priority;
     }
 }

@@ -9,6 +9,6 @@ public class RemoveCommandResult extends CommandResult {
         this.position = position;
     }
     public String print() {
-        return "\t" + this.priority + ", pos = " + position;
+        return this.priority + ", pos = " + position;
     }
 }

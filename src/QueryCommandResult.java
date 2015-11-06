@@ -7,6 +7,6 @@ public class QueryCommandResult extends CommandResult {
         this.position = position;
     }
     public String print() {
-        return "\tpos = " + this.position;
+        return "pos = " + this.position;
     }
 }
