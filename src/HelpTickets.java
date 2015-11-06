@@ -21,9 +21,9 @@ public class HelpTickets {
             try {
                 Command command = cmdParser.parseLine(inputLine);
                 CommandResult commandResult = command.run(ticketSystem);
-                System.out.println(commandResult.print());
+                System.out.println('\t' + commandResult.print());
             } catch (Exception e) {
-                System.out.println(printError(e.getMessage()));
+                System.out.println('\t' + printError(e.getMessage()));
             }
         }
     }

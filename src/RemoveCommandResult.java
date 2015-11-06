@@ -10,6 +10,6 @@ public class RemoveCommandResult extends CommandResult {
     }
     @Override
     public String print() {
-        return "\t" + this.priority + ", pos = " + position;
+        return this.priority + ", pos = " + position;
     }
 }

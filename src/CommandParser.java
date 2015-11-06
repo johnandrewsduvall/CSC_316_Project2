@@ -12,6 +12,7 @@ public class CommandParser {
                 switch (action) {
                     case '+':
                         return parseAddCommand(line);
+                    case '−':
                     case '-':
                         return parseRemoveCommand(line);
                     case '*':
