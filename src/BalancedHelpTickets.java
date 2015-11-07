@@ -6,7 +6,7 @@
 
 import java.util.Scanner;
 
-public class HelpTickets {
+public class BalancedHelpTickets {
     public static void main(String[] args) {
         /*
          * Because the program utilizes a balanced search tree

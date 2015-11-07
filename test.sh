@@ -1,5 +1,5 @@
 function test {
-    local MAIN_PROGRAM='HelpTickets';
+    local MAIN_PROGRAM='BalancedHelpTickets';
     local SRC_FILES_DIR='src';
     local BACK_SRC_FILES_DIR='../';
     local INPUT_FILES_DIR='tests/inputs';
