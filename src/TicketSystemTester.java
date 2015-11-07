@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+
 /**
  * @author Matthew Watkins, Shujun Ye, John Andrew Duvall
  * This file tests the help ticket program with simulated input.
@@ -6,13 +9,34 @@
 
 public class TicketSystemTester {
     public static void main (String[] args) {
-
-        try {
-            runTests();
-        } catch (Exception e) {
-            log(e.getMessage());
-        }
+        Scanner in = new Scanner(System.in);
+        log("Help Tickets Tester");
+        String choice = "y";
         
+        while(!choice.equalsIgnoreCase("n"))
+        {
+            System.out.print("Automatic test or manual entry? (a/m): ");
+            choice = in.nextLine();
+
+
+            if(choice.equalsIgnoreCase("a"))
+            {
+                try {
+                    runTests();
+                } catch (Exception e) {
+                    log(e.getMessage());
+                }
+            }
+            else if (choice.equalsIgnoreCase("m") )
+            {
+                HelpTickets.main(null);
+            }
+            else
+            {
+                log("Invalid command");
+            }
+            System.out.print("Continue testing? (y/n) :");
+        }
     }
 
     private static void runTests() {
