@@ -2,22 +2,22 @@ import java.util.*;
 
 public class TicketSystem {
   // Map of priority -> ticket ID
-  private TreeMap<Integer, Integer> _priorityToID;
+  private TreeMap<Long, Long> _priorityToID;
 
   // Map of ticket ID -> priority
-  private TreeMap<Integer, Integer> _idToPriority;
+  private TreeMap<Long, Long> _idToPriority;
 
   // The highest ticket ID in the system
-  private int _maxTicketID;
+  private long _maxTicketID;
 
   public TicketSystem() {
-    _priorityToID = new TreeMap<Integer, Integer>();
-    _idToPriority = new TreeMap<Integer, Integer>();
+    _priorityToID = new TreeMap<Long, Long>();
+    _idToPriority = new TreeMap<Long, Long>();
   }
 
-  public Ticket add(int priority) throws Exception {
+  public Ticket add(long priority) throws Exception {
     ensurePriorityIsNew(priority);
-    int newTicketID = getNextTicketID();
+    long newTicketID = getNextTicketID();
     _priorityToID.put(priority, newTicketID);
     _idToPriority.put(newTicketID, priority);
     return new Ticket(newTicketID, priority);
@@ -25,29 +25,29 @@ public class TicketSystem {
 
   public Ticket removeHighest(boolean getPos) throws Exception {
     ensureQueueIsNotEmpty();
-    int highestPriority = _priorityToID.lastKey();
+    long highestPriority = _priorityToID.lastKey();
     return remove(_priorityToID.get(highestPriority), highestPriority, getPos);
   }
 
-  public Ticket removePriority(int priority, boolean getPos) throws Exception {
+  public Ticket removePriority(long priority, boolean getPos) throws Exception {
     ensureQueueIsNotEmpty();
     ensurePriorityExists(priority);
     return remove(_priorityToID.get(priority), priority, getPos);
   }
 
-  public Ticket removeID(int ticketID, boolean getPos) throws Exception {
+  public Ticket removeID(long ticketID, boolean getPos) throws Exception {
     ensureQueueIsNotEmpty();
     ensureIdExists(ticketID);
     return remove(ticketID, _idToPriority.get(ticketID), getPos);
   }
 
-  public int getPositionByID(int ticketID) throws Exception {
+  public long getPositionByID(long ticketID) throws Exception {
     ensureQueueIsNotEmpty();
     ensureIdExists(ticketID);
     return getPosition(_idToPriority.get(ticketID));
   }
 
-  public int getPositionByPriority(int ticketPriority) throws Exception {
+  public long getPositionByPriority(long ticketPriority) throws Exception {
     ensureQueueIsNotEmpty();
     ensurePriorityExists(ticketPriority);
     return getPosition(ticketPriority);
@@ -56,7 +56,7 @@ public class TicketSystem {
   /*
    * PRIVATE METHODS
    */
-  private int getNextTicketID() {
+  private long getNextTicketID() {
     return ++_maxTicketID;
   }
 
@@ -66,31 +66,31 @@ public class TicketSystem {
     }
   }
 
-  private void ensureIdExists(int id) throws Exception {
+  private void ensureIdExists(long id) throws Exception {
     if (!_idToPriority.containsKey(id)) {
       throw new Exception("there is no ticket with id = "
         + id + " in the queue");
     }
   }
 
-  private void ensurePriorityExists(int p) throws Exception {
+  private void ensurePriorityExists(long p) throws Exception {
     if (!_priorityToID.containsKey(p)) {
       throw new Exception("there is no ticket with priority = "
         + p + " in the queue");
     }
   }
 
-  private void ensurePriorityIsNew(int p) throws Exception {
+  private void ensurePriorityIsNew(long p) throws Exception {
     if (_idToPriority.containsKey(p)) {
       throw new Exception("a ticket with priority "
         + p + " is already in the queue");
     }
   }
 
-  private Ticket remove(int ticketID, int priority, boolean getPos) {
+  private Ticket remove(long ticketID, long priority, boolean getPos) {
     Ticket ticket = null;
     if (getPos) {
-      int position = getPosition(priority);
+      long position = getPosition(priority);
       ticket = new Ticket(ticketID, priority, position);
     } else {
       ticket = new Ticket(ticketID, priority);
@@ -100,8 +100,8 @@ public class TicketSystem {
     return ticket;
   }
 
-  private int getPosition(int priority) {
-    SortedMap<Integer, Integer> tailMap = _priorityToID.tailMap(priority);
+  private long getPosition(long priority) {
+    SortedMap<Long, Long> tailMap = _priorityToID.tailMap(priority);
     return tailMap.size();
   }
 }

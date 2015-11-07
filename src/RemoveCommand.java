@@ -2,8 +2,8 @@
  * @author Shujun Ye
  */
 public class RemoveCommand extends Command<RemoveCommandResult> {
-    private int ticketId;
-    public RemoveCommand(int ticketId){
+    private long ticketId;
+    public RemoveCommand(long ticketId){
         this.ticketId = ticketId;
     }
     

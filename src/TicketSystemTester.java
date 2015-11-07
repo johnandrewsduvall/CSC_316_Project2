@@ -51,7 +51,7 @@ public class TicketSystemTester {
 
     private static void runTests() {
         TicketSystem ticketSystem = new TicketSystem();
-        int failedTests = 0;
+        long failedTests = 0;
         Ticket ticket;
         try{
         //Attempt to remove ticket from empty list, tests failsafe condition
