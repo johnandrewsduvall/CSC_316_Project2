@@ -9,10 +9,19 @@ import java.util.Scanner;
 
 public class TicketSystemTester {
     public static void main (String[] args) {
+        if (args != null && args.length > 0 && args[0].trim().equals("go")) {
+            runTests();
+            return;
+        }
+
+        runFromUserPrompt();
+    }
+
+    private static void runFromUserPrompt() {
         Scanner in = new Scanner(System.in);
         log("Help Tickets Tester");
         String choice = "y";
-        
+
         while(!choice.equalsIgnoreCase("n"))
         {
             System.out.print("Automatic test or manual entry? (a/m): ");
@@ -36,6 +45,7 @@ public class TicketSystemTester {
                 log("Invalid command");
             }
             System.out.print("Continue testing? (y/n) :");
+            choice = in.nextLine();
         }
     }
 
@@ -52,7 +62,7 @@ public class TicketSystemTester {
         {
             log(e.getMessage());
         }
-    
+
 
             try {
 // Add a ticket, should succeed
@@ -62,7 +72,7 @@ public class TicketSystemTester {
             failedTests += testEquals(10, ticket.priority) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             try {
@@ -73,7 +83,7 @@ public class TicketSystemTester {
             failedTests += testEquals(100, ticket.priority) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             try {
@@ -86,7 +96,7 @@ public class TicketSystemTester {
             failedTests += testEquals(50, ticket.priority) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             try {
@@ -94,7 +104,7 @@ public class TicketSystemTester {
             failedTests += testEquals(3, ticketSystem.getPositionByID(1)) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             try {
@@ -108,7 +118,7 @@ public class TicketSystemTester {
             failedTests += testEquals(1, ticket.position) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             try {
@@ -116,14 +126,14 @@ public class TicketSystemTester {
             failedTests += testEquals(2, ticketSystem.getPositionByID(1)) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
             try {
             log("TEST: Querying the position of ticket ID 3");
             failedTests += testEquals(1, ticketSystem.getPositionByID(3)) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             try {
@@ -135,7 +145,7 @@ public class TicketSystemTester {
             failedTests += testEquals(50, ticket.priority) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             try {
@@ -143,7 +153,7 @@ public class TicketSystemTester {
             failedTests += testEquals(1, ticketSystem.getPositionByID(1)) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             try {
@@ -155,7 +165,7 @@ public class TicketSystemTester {
             failedTests += testEquals(10, ticket.priority) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
-            failedTests++; 
+            failedTests++;
         }
 
             if(failedTests == 0)
@@ -166,11 +176,11 @@ public class TicketSystemTester {
             {
                 log("WARNING FAILED " + failedTests + " TESTS");
             }
-        
+
     }
-    private static boolean testEquals(Object expected, Object actual) 
+    private static boolean testEquals(Object expected, Object actual)
                                                             throws Exception {
-        test(expected.equals(actual), "Expected " + expected.toString() 
+        test(expected.equals(actual), "Expected " + expected.toString()
                                             + " but got " + actual.toString());
         return expected.toString().equals(actual.toString());
     }

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class HelpTickets {
     public static void main(String[] args) {
-        
+
         //Object initialization
         CommandParser cmdParser = new CommandParser();
         TicketSystem ticketSystem = new TicketSystem();
@@ -21,9 +21,9 @@ public class HelpTickets {
             try {
                 Command command = cmdParser.parseLine(inputLine);
                 CommandResult commandResult = command.run(ticketSystem);
-                System.out.println('\t' + commandResult.print());
+                System.out.println(commandResult.print());
             } catch (Exception e) {
-                System.out.println('\t' + printError(e.getMessage()));
+                System.out.println(printError(e.getMessage()));
             }
         }
     }
