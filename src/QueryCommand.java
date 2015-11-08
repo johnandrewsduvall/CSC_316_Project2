@@ -2,8 +2,8 @@
  * @author Shujun Ye
  */
 public class QueryCommand extends Command<QueryCommandResult> {
-    private int id;
-    public QueryCommand (int id){
+    private long id;
+    public QueryCommand (long id){
         this.id = id;
     }
     

@@ -1,7 +1,7 @@
 public class AddCommand extends Command<AddCommandResult> {
-    private int priority;
+    private long priority;
 
-    public AddCommand(int priority) {
+    public AddCommand(long priority) {
         this.priority = priority;
     }
 

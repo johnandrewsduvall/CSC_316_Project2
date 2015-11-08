@@ -30,12 +30,12 @@ public class CommandParser {
     }
 
     private AddCommand parseAddCommand(String line) {
-        int priority = new Scanner(line.substring(1)).nextInt();
+        long priority = new Scanner(line.substring(1)).nextLong();
         return new AddCommand(priority);
     }
 
     private RemoveCommand parseRemoveCommand(String line) {
-        int id = new Scanner(line.substring(1)).nextInt();
+        long id = new Scanner(line.substring(1)).nextLong();
         return new RemoveCommand(id);
     }
 
@@ -44,7 +44,7 @@ public class CommandParser {
     }
 
     private QueryCommand parseQueryCommand(String line) {
-        int id = new Scanner(line.substring(1)).nextInt();
+        long id = new Scanner(line.substring(1)).nextLong();
         return new QueryCommand(id);
     }
 }
