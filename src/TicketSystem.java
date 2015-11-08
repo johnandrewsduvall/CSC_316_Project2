@@ -16,15 +16,19 @@ public class TicketSystem {
     public Ticket add(int priority) throws Exception {
         int idx = 0;
         if (_tickets.size() > 0) {
-            idx = getPriorityIndex(priority, 0, _tickets.size() - 1);
-            int priorityAtIdx = _tickets.get(idx);
-            if (priorityAtIdx == priority) {
-                errorDuplicatePriority(priority);
+            idx = getPriorityIndex(priority);
+            if (idx < _tickets.size()) {
+                int priorityAtIdx = _tickets.get(idx);
+                if (priorityAtIdx == priority) {
+                    errorDuplicatePriority(priority);
+                }
             }
         }
+
         _idMap.put(++_maxID, priority);
         _pMap.put(priority, _maxID);
         _tickets.add(idx, priority);
+
         return new Ticket(_maxID, priority, idx + 1);
     }
 
