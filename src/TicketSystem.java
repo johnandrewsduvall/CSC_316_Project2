@@ -1,3 +1,8 @@
+/**
+ * @author Matthew Watkins
+ * 
+ */
+
 import java.util.*;
 
 public class TicketSystem {
