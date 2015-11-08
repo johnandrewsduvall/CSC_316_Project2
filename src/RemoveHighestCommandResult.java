@@ -2,9 +2,9 @@
  * @author Shujun Ye
  */
 public class RemoveHighestCommandResult extends CommandResult {
-    private long id;
-    private long priority;
-    public RemoveHighestCommandResult (long id, long priority){
+    private int id;
+    private int priority;
+    public RemoveHighestCommandResult (int id, int priority){
         this.id = id;
         this.priority = priority;
     }

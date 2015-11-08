@@ -1,7 +1,7 @@
 public class AddCommandResult extends CommandResult {
-    public long id;
+    public int id;
 
-    public AddCommandResult(long id) {
+    public AddCommandResult(int id) {
         this.id = id;
     }
 

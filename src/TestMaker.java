@@ -23,13 +23,13 @@ public class TestMaker {
         
         try {
             testWriter = new PrintStream(new File(fileName));
-            for (long i = 0; i <  10000; i++)
+            for (int i = 0; i <  10000; i++)
             {
-                testWriter.print(" + " + (long)(Math.random() * 10000));
+                testWriter.print(" + " + (int)(Math.random() * 10000));
                 if((i%50)==0)
                     testWriter.print("\n");
             }
-            for (long i = 0; i < 10000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 testWriter.print(" *");
                 if((i%50)==0)

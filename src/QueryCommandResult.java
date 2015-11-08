@@ -2,8 +2,8 @@
  * @author Shujun Ye
  */
 public class QueryCommandResult extends CommandResult {
-    private long position;
-    public QueryCommandResult(long position) throws Exception{
+    private int position;
+    public QueryCommandResult(int position) {
         this.position = position;
     }
     public String print() {
