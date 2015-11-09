@@ -1,21 +1,23 @@
-
+/**
+ * Author:     John Andrew S Duvall, Matthew Watkins, Shujun Ye
+ * Date:       08 Nov 2015
+ * Project:    CSC 316 Project2
+ */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/*
- * Author:     John Andrew S Duvall
- * Date:       (Insert date here)
- * Project:    (Insert project here)
- */
-
 /**
- *
+ * The test of the program.
  * @author JohnAndrew
  */
 public class TestMaker {
+    /**
+     * Main method of the class.
+     * @param args comman line args.
+     */
     public static void main(String args[])
     {
         PrintStream testWriter = null;

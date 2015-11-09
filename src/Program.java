@@ -1,12 +1,20 @@
 /**
+ * Author:     John Andrew S Duvall, Matthew Watkins, Shujun Ye
+ * Date:       08 Nov 2015
+ * Project:    CSC 316 Project2
+ */
+import java.util.Scanner;
+
+/**
+ * This class handles error messages.
  * @author Matthew Watkins
  * @author Shujun Ye
  * @author John Andrew Duvall
  */
-
-import java.util.Scanner;
-
 public class Program {
+    /**
+     * This method runs the program.
+     */
     public static void run() {
         // Object initialization
         CommandParser cmdParser = new CommandParser();
@@ -27,7 +35,11 @@ public class Program {
         }
     }
 
-    // Formatting method
+    /**
+     * This method format error message.
+     * @param errorMessage a string of error message
+     * @return a string of error message
+     */
     private static String printError(String errorMessage) {
         return "Warning: " + errorMessage;
     }

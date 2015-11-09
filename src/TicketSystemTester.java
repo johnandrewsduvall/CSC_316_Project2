@@ -1,13 +1,22 @@
+/**
+ * Author:     John Andrew S Duvall, Matthew Watkins, Shujun Ye
+ * Date:       08 Nov 2015
+ * Project:    CSC 316 Project2
+ */
 
 import java.util.Scanner;
 
 /**
- * @author Matthew Watkins, Shujun Ye, John Andrew Duvall
  * This file tests the help ticket program with simulated input.
+ * @author John Andrew S Duvall
+ * @author Matthew Watkins
+ * @author Shujun Ye
  */
-
-
 public class TicketSystemTester {
+    /**
+     * Main method of the class.
+     * @param args comman line args.
+     */
     public static void main (String[] args) {
         if (args != null && args.length > 0 && args[0].trim().equals("go")) {
             runTests();
@@ -17,6 +26,9 @@ public class TicketSystemTester {
         runFromUserPrompt();
     }
 
+    /**
+     * This method runs from user prompt.
+     */
     private static void runFromUserPrompt() {
         Scanner in = new Scanner(System.in);
         log("Help Tickets Tester");
@@ -48,7 +60,10 @@ public class TicketSystemTester {
             choice = in.nextLine();
         }
     }
-
+    
+    /**
+     * This method run a series of tests.
+     */
     private static void runTests() {
         TicketSystem ticketSystem = new TicketSystem();
         long failedTests = 0;
@@ -178,20 +193,30 @@ public class TicketSystemTester {
             }
 
     }
+    
+    /**
+     * This method tests if two objects are equal.
+     * @return return true if two are equal, false otherwise.
+     */
     private static boolean testEquals(Object expected, Object actual)
                                                             throws Exception {
         test(expected.equals(actual), "Expected " + expected.toString()
                                             + " but got " + actual.toString());
         return expected.toString().equals(actual.toString());
     }
-
+    
+    /**
+     * This method tests the error message.
+     */
     private static void test(boolean check, String message) throws Exception {
         if (!check) {
             throw new Exception(message);
         }
     }
 
-    //Local Print message to improve readability of code
+    /**
+     * Local Print message to improve readability of code
+     */
     private static void log(String message) {
         System.out.println(message);
     }
