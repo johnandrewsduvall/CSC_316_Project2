@@ -5,17 +5,17 @@
  */
 
 /**
- * This class adds a tiket with the given priority.
+ * This class adds a ticket with the given priority.
  * @author John Andrew S Duvall
  * @author Matthew Watkins
  * @author Shujun Ye
  */
 public class AddCommand extends Command<AddCommandResult> {
-    /** An int that represents a priority of a ticket. */
+    /** An integer that represents a priority of a ticket. */
     private int priority;
     
     /**
-     * Constuctor of AddCommand class.
+     * Constructor of AddCommand class.
      * @param priority a priority of a ticket
      */
     public AddCommand(int priority) {
@@ -24,7 +24,7 @@ public class AddCommand extends Command<AddCommandResult> {
 
     @Override
     /**
-     * This mehtod runs ticket system and adds a ticket with the given priority. 
+     * This method runs ticket system and adds a ticket with the given priority. 
      * @param ticketSystem the ticket system
      * @return the result of AddCommandResult
      * @throws Exception if it is invalid data

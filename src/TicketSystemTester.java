@@ -15,53 +15,87 @@ import java.util.Scanner;
 public class TicketSystemTester {
     /**
      * Main method of the class.
-     * @param args comman line args.
+     * @param args command line arguments.
      */
     public static void main (String[] args) {
         if (args != null && args.length > 0 && args[0].trim().equals("go")) {
             runTests();
             return;
         }
+        TicketSystem ts = new TicketSystem();
 
-        Ticket ticket = ts.add(10);
-        testEquals(1, ticket.id);
-        testEquals(1, ticket.position);
-        testEquals(10, ticket.priority);
+        Ticket ticket = null;
+        try {
+            ticket = ts.add(10);
+            testEquals(1, ticket.id);
+            testEquals(1, ticket.position);
+            testEquals(10, ticket.priority);
+        } catch (Exception exception) {
+            log(exception.getMessage());
+        }
 
-        ticket = ts.add(100);
-        testEquals(2, ticket.id);
-        testEquals(1, ticket.position);
-        testEquals(100, ticket.priority);
+        try {
+            ticket = ts.add(100);
+            testEquals(2, ticket.id);
+            testEquals(1, ticket.position);
+            testEquals(100, ticket.priority);
+        } catch (Exception exception) {
+            log(exception.getMessage());
+        }
 
-        ticket = ts.add(50);
-        testEquals(3, ticket.id);
-        testEquals(2, ticket.position);
-        testEquals(50, ticket.priority);
+        try {
+            ticket = ts.add(50);
+            testEquals(3, ticket.id);
+            testEquals(2, ticket.position);
+            testEquals(50, ticket.priority);
+        } catch (Exception exception) {
+            log(exception.getMessage());
+        }
 
-        ticket = ts.get(1);
-        testEquals(1, ticket.id);
-        testEquals(3, ticket.position);
-        testEquals(10, ticket.priority);
+        try {
+            ticket = ts.get(1);
+            testEquals(1, ticket.id);
+            testEquals(3, ticket.position);
+            testEquals(10, ticket.priority);
+        } catch (Exception exception) {
+            log(exception.getMessage());
+        }
 
-        ticket = ts.remove(2);
-        testEquals(2, ticket.id);
-        testEquals(1, ticket.position);
-        testEquals(100, ticket.priority);
+        try {
+            ticket = ts.remove(2);
+            testEquals(2, ticket.id);
+            testEquals(1, ticket.position);
+            testEquals(100, ticket.priority);
+        } catch (Exception exception) {
+            log(exception.getMessage());
+        }
 
-        ticket = ts.removeHighest();
-        testEquals(3, ticket.id);
-        testEquals(1, ticket.position);
-        testEquals(50, ticket.priority);
+        try {
+            ticket = ts.removeHighest();
+            testEquals(3, ticket.id);
+            testEquals(1, ticket.position);
+            testEquals(50, ticket.priority);
+        } catch (Exception exception) {
+            log(exception.getMessage());
+        }
 
-        ticket = ts.get(1);
-        testEquals(1, ticket.id);
-        testEquals(1, ticket.position);
-        testEquals(10, ticket.priority);
+        try {
+            ticket = ts.get(1);
+            testEquals(1, ticket.id);
+            testEquals(1, ticket.position);
+            testEquals(10, ticket.priority);
+        } catch (Exception exception) {
+            log(exception.getMessage());
+        }
 
-        ticket = ts.removeHighest();
-        testEquals(1, ticket.id);
-        testEquals(1, ticket.position);
-        testEquals(10, ticket.priority);
+        try {
+            ticket = ts.removeHighest();
+            testEquals(1, ticket.id);
+            testEquals(1, ticket.position);
+            testEquals(10, ticket.priority);
+        } catch (Exception exception) {
+            log(exception.getMessage());
+        }
 
         log("All tests passed");
     }
@@ -111,7 +145,7 @@ public class TicketSystemTester {
         try{
         //Attempt to remove ticket from empty list, tests failsafe condition
         log("TEST: Attempting to remove ticket from empty list (should fail)");
-        ticketSystem.removeHighest(true);
+        ticketSystem.removeHighest();
         }
         catch(Exception e)
         {
@@ -156,7 +190,7 @@ public class TicketSystemTester {
 
             try {
             log("TEST: Querying the position of ticket ID 1");
-            failedTests += testEquals(3, ticketSystem.getPositionByID(1)) ? 0 : 1;
+            failedTests += testEquals(3, ticketSystem.get(1)) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
             failedTests++;
@@ -164,7 +198,7 @@ public class TicketSystemTester {
 
             try {
             log("TEST: Removing the ticket with ID 2");
-            ticket = ticketSystem.removeID(2, true);
+            ticket = ticketSystem.remove(2);
             log("   Validating ticket ID");
             failedTests += testEquals(2, ticket.id) ? 0 : 1;
             log("   Validating ticket priority");
@@ -178,14 +212,14 @@ public class TicketSystemTester {
 
             try {
             log("TEST: Querying the position of ticket ID 1 again");
-            failedTests += testEquals(2, ticketSystem.getPositionByID(1)) ? 0 : 1;
+            failedTests += testEquals(2, ticketSystem.get(1)) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
             failedTests++;
         }
             try {
             log("TEST: Querying the position of ticket ID 3");
-            failedTests += testEquals(1, ticketSystem.getPositionByID(3)) ? 0 : 1;
+            failedTests += testEquals(1, ticketSystem.get(3)) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
             failedTests++;
@@ -193,7 +227,7 @@ public class TicketSystemTester {
 
             try {
             log("TEST: Removing the highest priority ticket");
-            ticket = ticketSystem.removeHighest(false);
+            ticket = ticketSystem.removeHighest();
             log("   Validating ticket ID");
             failedTests += testEquals(3, ticket.id) ? 0 : 1;
             log("   Validating ticket priority");
@@ -205,7 +239,7 @@ public class TicketSystemTester {
 
             try {
             log("TEST: Querying the position of ticket ID 1 yet again");
-            failedTests += testEquals(1, ticketSystem.getPositionByID(1)) ? 0 : 1;
+            failedTests += testEquals(1, ticketSystem.get(1)) ? 0 : 1;
         } catch (Exception exception) {
             log(exception.getMessage());
             failedTests++;
@@ -213,7 +247,7 @@ public class TicketSystemTester {
 
             try {
             log("TEST: Removing the highest priority ticket");
-            ticket = ticketSystem.removeHighest(false);
+            ticket = ticketSystem.removeHighest();
             log("   Validating ticket ID");
             failedTests += testEquals(1, ticket.id) ? 0 : 1;
             log("   Validating ticket priority");
