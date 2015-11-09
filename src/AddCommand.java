@@ -13,7 +13,7 @@
 public class AddCommand extends Command<AddCommandResult> {
     /** An integer that represents a priority of a ticket. */
     private int priority;
-    
+
     /**
      * Constructor of AddCommand class.
      * @param priority a priority of a ticket
@@ -24,7 +24,7 @@ public class AddCommand extends Command<AddCommandResult> {
 
     @Override
     /**
-     * This method runs ticket system and adds a ticket with the given priority. 
+     * This method runs ticket system and adds a ticket with the given priority
      * @param ticketSystem the ticket system
      * @return the result of AddCommandResult
      * @throws Exception if it is invalid data

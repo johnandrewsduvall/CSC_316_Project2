@@ -6,7 +6,7 @@
 import java.util.Scanner;
 
 /**
- * This class handles error messages.
+ * This class runs the program
  * @author Matthew Watkins
  * @author Shujun Ye
  * @author John Andrew Duvall

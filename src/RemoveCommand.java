@@ -11,7 +11,7 @@
 public class RemoveCommand extends Command<RemoveCommandResult> {
     /** An int that represents a ticket's id. */
     private int ticketId;
-    
+
     /**
      * Constructor of RemoveCommand class.
      * @param ticketId ticket's id
@@ -27,7 +27,7 @@ public class RemoveCommand extends Command<RemoveCommandResult> {
      * @return the result of RemoveCommandResult
      * @throws Exception if it is invalid data
      */
-    public RemoveCommandResult run(TicketSystem ticketSystem) throws Exception{
+    public RemoveCommandResult run(TicketSystem ticketSystem) throws Exception {
         Ticket result = ticketSystem.remove(ticketId);
         return new RemoveCommandResult(result.priority, result.position);
     }

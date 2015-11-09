@@ -5,7 +5,7 @@
  */
 
 /**
- * Abstract class of CommandResult.
+ * CommandResult base class
  * @author Matthew Watkins
  * @author Shujun Ye
  * @author John Andrew Duvall

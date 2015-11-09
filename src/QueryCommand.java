@@ -5,7 +5,8 @@
  */
 
 /**
- * This class finds current position in the queue of the ticket with the givn id.
+ * This class finds current position in the queue of the
+ * ticket with the givn id.
  * @author Shujun Ye
  */
 public class QueryCommand extends Command<QueryCommandResult> {
@@ -21,7 +22,8 @@ public class QueryCommand extends Command<QueryCommandResult> {
 
     @Override
     /**
-     * This mehtod runs ticket system and finds current position in the queue of the ticket with the givn id.
+     * This mehtod runs ticket system and finds current position
+     * in the queue of the ticket with the givn id.
      * @param ticketSystem the ticket system
      * @return the result of QueryCommandResult
      * @throws Exception if it is invalid data

@@ -17,10 +17,9 @@ public class HelpTickets {
      * @param args comman line args.
      */
     public static void main(String[] args) {
-        /*
-         * Because the program utilizes a balanced search tree
-         * all the time, both the HelpTickets and the BalancedHelpTickets
-         * classes call the same code
+        /**
+         * Because the program is always balanced, both the HelpTickets
+         * and the BalancedHelpTickets classes call the same code
          */
         Program.run();
     }

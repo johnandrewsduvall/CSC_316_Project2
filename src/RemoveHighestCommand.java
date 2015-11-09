@@ -17,7 +17,8 @@ public class RemoveHighestCommand extends Command<RemoveHighestCommandResult> {
      * @return the result of RemoveHishestCommandResult
      * @throws Exception if it is invalid data
      */
-    public RemoveHighestCommandResult run(TicketSystem ticketSystem) throws Exception{
+    public RemoveHighestCommandResult run(TicketSystem ticketSystem)
+                                                               throws Exception{
         Ticket result = ticketSystem.removeHighest();
         return new RemoveHighestCommandResult(result.id, result.priority);
     }

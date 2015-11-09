@@ -5,7 +5,7 @@
  */
 
 /**
- * Interface defining Command class.
+ * Command base class
  * @author Matthew Watkins
  * @author Shujun Ye
  * @author John Andrew Duvall
@@ -13,7 +13,7 @@
  */
 public abstract class Command<E extends CommandResult> {
     /**
-     * The abstract class for run method. 
+     * The abstract class for run method.
      * @param ticketsystem the ticket system.
      * @param <E> object
      * @throws Exception if it is invalid data.
