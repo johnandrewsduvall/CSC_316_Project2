@@ -48,7 +48,7 @@ public class CommandParser {
      * @return a ticket with the given priority.
      */
     private AddCommand parseAddCommand(String line) {
-        long priority = new Scanner(line.substring(1)).nextLong();
+        int priority = new Scanner(line.substring(1)).nextInt();
         return new AddCommand(priority);
     }
 
@@ -58,7 +58,7 @@ public class CommandParser {
      * @return remvoves a ticket with the given id
      */
     private RemoveCommand parseRemoveCommand(String line) {
-        long id = new Scanner(line.substring(1)).nextLong();
+        int id = new Scanner(line.substring(1)).nextInt();
         return new RemoveCommand(id);
     }
     
@@ -76,7 +76,7 @@ public class CommandParser {
      * @return current position in the queue of the ticket the given id.
      */
     private QueryCommand parseQueryCommand(String line) {
-        long id = new Scanner(line.substring(1)).nextLong();
+        int id = new Scanner(line.substring(1)).nextInt();
         return new QueryCommand(id);
     }
 }

@@ -18,7 +18,7 @@ public class QueryCommand extends Command<QueryCommandResult> {
     public QueryCommand (int id){
         this.id = id;
     }
-    
+
     @Override
     /**
      * This mehtod runs ticket system and finds current position in the queue of the ticket with the givn id.

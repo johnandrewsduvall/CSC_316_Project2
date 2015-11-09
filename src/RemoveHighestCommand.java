@@ -9,7 +9,7 @@
  * @author Shujun Ye
  */
 public class RemoveHighestCommand extends Command<RemoveHighestCommandResult> {
-    
+
     @Override
     /**
      * This method runs ticketSystem and removes ticket with highest priority.

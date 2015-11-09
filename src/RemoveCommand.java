@@ -19,7 +19,7 @@ public class RemoveCommand extends Command<RemoveCommandResult> {
     public RemoveCommand(int ticketId){
         this.ticketId = ticketId;
     }
-    
+
     @Override
     /**
      * This mehtod runs ticket system and removes a ticket.

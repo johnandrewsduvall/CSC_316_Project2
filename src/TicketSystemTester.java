@@ -23,7 +23,47 @@ public class TicketSystemTester {
             return;
         }
 
-        runFromUserPrompt();
+        Ticket ticket = ts.add(10);
+        testEquals(1, ticket.id);
+        testEquals(1, ticket.position);
+        testEquals(10, ticket.priority);
+
+        ticket = ts.add(100);
+        testEquals(2, ticket.id);
+        testEquals(1, ticket.position);
+        testEquals(100, ticket.priority);
+
+        ticket = ts.add(50);
+        testEquals(3, ticket.id);
+        testEquals(2, ticket.position);
+        testEquals(50, ticket.priority);
+
+        ticket = ts.get(1);
+        testEquals(1, ticket.id);
+        testEquals(3, ticket.position);
+        testEquals(10, ticket.priority);
+
+        ticket = ts.remove(2);
+        testEquals(2, ticket.id);
+        testEquals(1, ticket.position);
+        testEquals(100, ticket.priority);
+
+        ticket = ts.removeHighest();
+        testEquals(3, ticket.id);
+        testEquals(1, ticket.position);
+        testEquals(50, ticket.priority);
+
+        ticket = ts.get(1);
+        testEquals(1, ticket.id);
+        testEquals(1, ticket.position);
+        testEquals(10, ticket.priority);
+
+        ticket = ts.removeHighest();
+        testEquals(1, ticket.id);
+        testEquals(1, ticket.position);
+        testEquals(10, ticket.priority);
+
+        log("All tests passed");
     }
 
     /**
